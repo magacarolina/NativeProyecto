@@ -3,11 +3,15 @@ import React from 'react';
 import Menu from './src/screens/menu';
 
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
 
   return ( 
-      <Menu/>
+    <NavigationContainer>
+       <Menu/>
+    </NavigationContainer>
+     
   );
 }
 
