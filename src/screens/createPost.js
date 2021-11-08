@@ -6,7 +6,10 @@ export default class CreatePost extends Component {
     constructor(props){
         super(props);
         this.state = {
-            comment: ""
+            comment: "",
+            photo:'',
+            showCamera: true
+
         }
     }
 
@@ -14,7 +17,10 @@ export default class CreatePost extends Component {
         db.collection('posts').add({
             owner: auth.currentUser.displayName,
             description: this.state.comment,
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            likes: [],
+            comments: [],
+            photo: this.state.photo
         })
         .then(response => {
             console.log(response);
@@ -34,11 +40,20 @@ export default class CreatePost extends Component {
     render(){
         
         return(
+            <>
+            {this.state.showCamera ? 
+            <MyCamera savePhoto = {(url)=>this.guardarFoto(url)}/>
+            :
+            <>
             <View style={styles.container}>
+                <Image
+                    source ={{uri: this.state.photo}}
+                    style = {styles.imagen}
+                />
                 <TextInput
                     style={styles.field}
                     keyboardType='default'
-                    placeholder="Qué querés compartir?"
+                    placeholder="Te gusta la foto que tomaste?"
                     multiline={true}
                     numberOfLines = {4}
                     onChangeText={text => this.setState({ comment: text })}
@@ -48,6 +63,9 @@ export default class CreatePost extends Component {
                     <Text style = {styles.text}> Post </Text>
                 </TouchableOpacity>
             </View>
+            </>
+            }
+            </>
         )
     }
 }
