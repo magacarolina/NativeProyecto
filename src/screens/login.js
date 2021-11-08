@@ -20,13 +20,13 @@ export default class Login extends Component {
                 <TextInput
                     style={styles.field}
                     keyboardType="email-address"
-                    placeholder="email"
+                    placeholder="Email"
                     onChangeText={text => this.setState({ email: text })}
                 />
                 <TextInput
                     style={styles.field}
                     keyboardType='number-pad'
-                    placeholder="password"
+                    placeholder="Contraseña/Password"
                     secureTextEntry={true}
                     onChangeText={text => this.setState({ password: text })}
                 />

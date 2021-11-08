@@ -32,16 +32,16 @@ export default class Menu extends Component{
         auth.signInWithEmailAndPassword(email, password)
         .then( response => {
             console.log(response);
-            alert("Usuario loggeado!");
+            alert("Usuario logueado con exito!");
             this.setState({
                 loggedIn: true
             })
         })
         .catch( response => {
             console.log(response);
-            alert("Error en el loggeo");
+            alert("Error en el logueo");
             this.setState({
-                error: "Error en loggeo"
+                error: response
             })
         })
     }
@@ -51,7 +51,7 @@ export default class Menu extends Component{
         auth.createUserWithEmailAndPassword(email, password)
         .then( response => {
             console.log(response);
-            alert("Usuario registrado!");
+            alert("Usuario registrado con exito!");
             response.user.updateProfile({
                 displayName: username
             })
@@ -63,7 +63,7 @@ export default class Menu extends Component{
             console.log(error);
             alert("Error en el registro");
             this.setState({
-                error: "Fallo en el registro"
+                error: "Registro fallido!"
             })
         })
     }

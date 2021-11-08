@@ -17,7 +17,7 @@ export default class Register extends Component {
             this.props.handleRegister(this.state.email, this.state.password, this.state.username)
         }
         else {
-            console.log("Completar los campos!")
+            console.log("Completar los campos faltantes!")
         }
     }
 
