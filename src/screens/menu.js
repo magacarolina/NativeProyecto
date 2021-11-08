@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Login from './login';
-import Register from './register';
-import Home from './home';
+import Login from './Login';
+import Register from './Register';
+import Home from './Home';
 import { auth } from '../firebase/config';
 import CreatePost from './CreatePost';
 
