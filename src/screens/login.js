@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
+import { color } from 'react-native-reanimated';
 import { auth } from '../firebase/config';
 
 export default class Login extends Component {
@@ -45,17 +46,18 @@ const styles = StyleSheet.create({
     },
     field: {
         width: '80%',
-        backgroundColor: "#09009B",
+        backgroundColor: "#B2E7E8",
         color: '#FFA400',
         padding: 10,
-        marginVertical: 10
+        marginVertical: 10,
+        
     },
     button: {
         width: '30%',
-        backgroundColor: "#0F00FF",
+        backgroundColor: "#8FB9AA",
     },
     text: {
-        color: '#FFA400',
+        color: '',
         fontSize: 20
     }
 })

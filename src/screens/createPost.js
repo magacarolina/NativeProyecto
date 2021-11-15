@@ -36,6 +36,12 @@ export default class CreatePost extends Component {
             alert("Error 404");
         })
     }
+    guardarFoto(url){
+        this.setState({
+            photo: url,
+            showCamera: false,
+        })
+    }
     
     render(){
         
@@ -53,7 +59,7 @@ export default class CreatePost extends Component {
                 <TextInput
                     style={styles.field}
                     keyboardType='default'
-                    placeholder="Te gusta la foto que tomaste?"
+                    placeholder="Que pensas?"
                     multiline={true}
                     numberOfLines = {4}
                     onChangeText={text => this.setState({ comment: text })}
