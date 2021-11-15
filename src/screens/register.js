@@ -58,12 +58,21 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center'
     },
-    field: {
-        width: '80%',
-        backgroundColor: "#09009B",
-        color: '#FFA400',
-        padding: 10,
-        marginVertical: 10
+    formContainer:{
+        backgroundColor: '#ccc',
+        marginHorizontal: 10,
+        padding:10,
+      },
+    field:{
+        borderColor: '#444',
+        borderWidth:1,
+        borderStyle: 'solid',
+        height: 20,
+        paddingHorizontal: 20,
+        paddingVertical:10
+      },
+    image:{
+        height: 250,
     },
     button: {
         width: '30%',
@@ -72,5 +81,10 @@ const styles = StyleSheet.create({
     text: {
         color: '#FFA400',
         fontSize: 20
-    }
+    },
+    touchable:{
+        backgroundColor: '#ccc',
+        borderRadius:4,
+        marginVertical:10,
+      }
 })
