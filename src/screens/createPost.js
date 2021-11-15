@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
+import { Text, TextInput, TouchableOpacity, View, StyleSheet, Image} from 'react-native';
 import { auth, db } from '../firebase/config';
+import MyCamera from '../components/MyCamera';
 
 export default class CreatePost extends Component {
     constructor(props){
@@ -59,7 +60,7 @@ export default class CreatePost extends Component {
                 <TextInput
                     style={styles.field}
                     keyboardType='default'
-                    placeholder="Que pensas?"
+                    placeholder="Si queres, podes agregarle una pequeña descripción a tu foto!"
                     multiline={true}
                     numberOfLines = {4}
                     onChangeText={text => this.setState({ comment: text })}
