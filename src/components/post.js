@@ -10,6 +10,7 @@ export default function Post ({item}){
             <Text>{item.data.description}</Text>
             <Text>{item.data.createdAt}</Text>
             <Text>{item.data.owner}</Text>
+            <Image>{}</Image>
         </View>
     )
 }

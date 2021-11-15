@@ -27,7 +27,9 @@ export default class CreatePost extends Component {
             console.log(response);
             alert("Posteo cargado con éxito!");
             this.setState({
-                comment: ""
+                photo:"",
+                comment: "",
+                showCamera: true
             })
             console.log(this.props);
             this.props.navigation.navigate('Home');
