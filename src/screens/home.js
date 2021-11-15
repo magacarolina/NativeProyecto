@@ -47,22 +47,29 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        padding: '10px',
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        
     },
     field: {
-        width: '80%',
-        backgroundColor: "#09009B",
+        width: '450px',
+        backgroundColor: "#B2E7E8",
         color: '#FFA400',
         padding: 10,
-        marginVertical: 10
+        marginVertical: 10,
+        fontSize: '20px'
+        
     },
     button: {
-        width: '30%',
-        backgroundColor: "#0F00FF",
+        width: '10%',
+        backgroundColor: "#8FB9AA",
+        alignItems: 'center',
+        padding: 10,
+        
     },
     text: {
-        color: '#FFA400',
-        fontSize: 20
+        color: '',
+        fontSize: '20px'
     }
 })
