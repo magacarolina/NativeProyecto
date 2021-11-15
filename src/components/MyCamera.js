@@ -16,7 +16,7 @@ export default class MyCamera extends React.Component{
     componentDidMount(){
         Camera.requestCameraPermissionsAsync()
         .then(response => {
-            console.log(response)
+            //console.log(response)
             this.setState({
             permission: response.granted
             })
@@ -27,7 +27,7 @@ export default class MyCamera extends React.Component{
         if(!this.camera) return;
         this.camera.takePictureAsync()
         .then(photo => {
-            console.log(photo)
+           // console.log(photo)
             this.setState({
                 photo: photo.uri
             })
@@ -44,11 +44,11 @@ export default class MyCamera extends React.Component{
             const ref = storage.ref(`camera/${Date.now()}.jpg`)
             ref.put(image)
             .then(()=>{
-                console.log(ref.getDownloadURL);
+               // console.log(ref.getDownloadURL);
                 
                 ref.getDownloadURL()
                 .then(url => {
-                    console.log(url);
+                  //  console.log(url);
                     this.setState({
                         photo: ''
                     })
@@ -147,6 +147,7 @@ export const styles = StyleSheet.create({
     },
     preview: {
         width: '100%',
+        
         flex: 6
     },
     btnContainer: {
