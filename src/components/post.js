@@ -12,6 +12,8 @@ export default class Post extends Component{
             liked: false,
             likes: 0,
             showModal: false,
+            commented: false,
+            comments: []
         }
     }
 
@@ -56,7 +58,12 @@ export default class Post extends Component{
                 likes: this.state.likes - 1
             })
         })
+        
     }
+    onComment(){
+
+    }
+
 
     //Muestra el modal
     showModal(){
@@ -76,7 +83,7 @@ export default class Post extends Component{
     
     render(){
 
-        console.log(this.props.dataItem);
+     
         return(
             <View style={styles.container}>
                 <Image
@@ -109,9 +116,12 @@ export default class Post extends Component{
                 {
                     this.state.showModal ?
 
-                        <Modal 
-                       
-                        >
+                    <Modal
+                    animationType= 'fade'
+                    transparent={false}
+                    visible = {this.state.showModal}
+                    style = {styles.modal}
+                >
                             <View style={styles.modalView}>
                                 {/* Botón de cierre del modal */}
                                 <TouchableOpacity style={styles.closeModal} onPress={()=>{this.closeModal()}}>
@@ -121,7 +131,7 @@ export default class Post extends Component{
                                     Aquí también irán los comentarios!  
                                 </Text>
                                 <Text>
-                                    Aquí también debe ir la posibilidad de agregar un comentario
+                                Acá también debe ir la posibilidad de agregar un comentario
                                 </Text>
                             </View>
 
