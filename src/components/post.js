@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, Image, StyleSheet, TouchableOpacity, Modal, FlatList } from 'react-native'
+import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Modal, FlatList } from 'react-native'
 import { auth, db } from '../firebase/config';
 import firebase from 'firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faTimes, faTimesCircle , faUser } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faTimes, faTimesCircle ,faComments, faUser, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -64,9 +64,47 @@ export default class Post extends Component{
         
     }
     onComment(){
+        const posteoActualizar = db.collection('posts').doc(this.props.item.id)
+        
+        posteoActualizar.update({
+            comments: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
+        })
+        .then(()=> {
+            this.setState({
+                commented: true,
+                comments: this.state.comments + 1
+            })
+        })
 
     }
 
+    /* handleComment(){
+        db.collection('posts').add({
+            owner: auth.currentUser.displayName,
+            description: this.state.comment,
+            createdAt: Date.now(),
+            likes: [],
+            comments: [],
+            photo: this.state.photo
+        })
+        .then(response => {
+            console.log(response);
+            alert("Comentario cargado con éxito!");
+            this.setState({
+                comments: [],
+                comment: "",
+                commented: true
+                
+            })
+            console.log(this.props);
+            
+        })
+        .catch(error => {
+            console.log(error);
+            alert("Error 404");
+        })
+    }
+ */
 
     //Muestra el modal
     showModal(){
@@ -113,6 +151,7 @@ export default class Post extends Component{
                  <Text>Likes: {this.state.likes}</Text>
                  <Text>{this.props.item.data.description}</Text>
                 <TouchableOpacity onPress={()=>{this.showModal()}}>
+              
                     <Text>
                         Ver comentarios
                     </Text>
@@ -135,7 +174,33 @@ export default class Post extends Component{
                                     Aquí también irán los comentarios!  
                                 </Text>
                                 <Text>
-                                Acá también debe ir la posibilidad de agregar un comentario
+                                {
+                    !this.state.commented ?
+                    <TouchableOpacity onPress = {()=> this.onComment()}>
+                        <Text style={styles.iconComment}>
+                        <FontAwesomeIcon icon= {faComments}/> {this.props.item.data.description}</Text>
+                        
+                        
+                    </TouchableOpacity>
+                    :
+                    <TouchableOpacity onPress = {()=> this.onDislike()}>
+                        
+                    </TouchableOpacity>
+                }
+                         <TextInput
+                    style={styles.field}
+                    keyboardType='default'
+                    placeholder="Si queres, podes agregarle un comentario a la foto publicada por el usuario!"
+                    multiline={true}
+                    numberOfLines = {5}
+                    onChangeText={text => this.setState({ comment: text })}
+                    value = {this.state.comment}
+                />
+               
+                <TouchableOpacity style = {styles.button} onPress={() => this.handleComment()}>
+               <Text style= {styles.uploadComment}> <FontAwesomeIcon icon= {faPlusCircle}/> Subir comentario</Text> 
+                </TouchableOpacity>   
+                                
                                 </Text>
                             </View>
 
@@ -159,6 +224,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 5,
     },
+    uploadComment:{
+        fontWeight: 'bold'
+    },
     
     closeModal:{
         alignSelf: 'flex-end',
@@ -168,10 +236,24 @@ const styles = StyleSheet.create({
         marginBotom: 10,
         borderRadius: 4,
     },
+    field: {
+        width: '80%',
+        backgroundColor: "#09009B",
+        color: '#FFA400',
+        padding: 10,
+        marginVertical: 10
+    },
     userText: {
         fontWeight: 400,
         fontSize: '18px',
         margin: '5px'
+
+    },
+    iconComment:{
+        color:'#0A0A0A',
+        fontWeight: 'bold',
+        fontSize: 15
+
 
     },
 
@@ -182,11 +264,12 @@ const styles = StyleSheet.create({
     iconText:{
         color:'#c91e2f',
         fontWeight: 'bold',
-        fontSize: 35
+        fontSize: 30
     },
     modalView:{
-        backgroundColor: 'purple',
-        borderRadius: 10,
+        backgroundColor: 'beige',
+        borderRadius: 15,
+        width: 370
     },
     modal: {
         border: 'none',
