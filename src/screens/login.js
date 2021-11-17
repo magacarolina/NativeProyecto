@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     field: {
-        width: '450px',
+
+        width: 360,
         backgroundColor: "#B2E7E8",
         color: '#FFA400',
         padding: 10,

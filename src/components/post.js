@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Modal, FlatList } from
 import { auth, db } from '../firebase/config';
 import firebase from 'firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faTimes, faTimesCircle , faUser } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -89,12 +89,13 @@ export default class Post extends Component{
      
         return(
             <View style={styles.container}>
+                <Text style={styles.userText}> 
+                <FontAwesomeIcon icon= {faUser}/> {this.props.item.data.owner}</Text>
                 <Image
           style={styles.image}
           source={{ uri: this.props.item.data.photo }}
              />
-                <Text>{this.props.item.data.description}</Text>
-                <Text>{this.props.item.data.owner}</Text>
+            
                 {
                     !this.state.liked ?
                     <TouchableOpacity onPress = {()=> this.onLike()}>
@@ -110,6 +111,7 @@ export default class Post extends Component{
                     </TouchableOpacity>
                 }
                  <Text>Likes: {this.state.likes}</Text>
+                 <Text>{this.props.item.data.description}</Text>
                 <TouchableOpacity onPress={()=>{this.showModal()}}>
                     <Text>
                         Ver comentarios
@@ -165,6 +167,12 @@ const styles = StyleSheet.create({
         marginTop:2,
         marginBotom: 10,
         borderRadius: 4,
+    },
+    userText: {
+        fontWeight: 400,
+        fontSize: '18px',
+        margin: '5px'
+
     },
 
     modalText:{

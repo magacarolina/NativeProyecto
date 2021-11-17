@@ -8,7 +8,7 @@ export default class Profile extends Component{
     constructor(props){
         super(props);
         this.state = {
-
+            posts: [],
         }
     }
 
@@ -33,20 +33,25 @@ export default class Profile extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text>Profile: {auth.currentUser.displayName}</Text>
-                <Text>Last access: {auth.currentUser.metadata.lastSignInTime}</Text>
 
-                <TouchableOpacity style={styles.button} onPress={()=> this.props.handleLogout()}>
-                    <Text style={styles.text}>Logout</Text>
-                </TouchableOpacity>
-
-                <FlatList
-                data={this.state.posts}
-                keyExtractor={(post) => post.id.toString()}
-                style={styles.postList}
-                renderItem={({ item }) => <Post dataItem={item}></Post>}
-                />
-            </View>
+            <Text>Usuario: {auth.currentUser.displayName}</Text>
+            <Text>mail: {auth.currentUser.email}</Text>
+            <Text>
+              {auth.currentUser.metadata.lastSignInTime}
+            </Text>
+            <Text>Publicaciones: {this.state.posts.length}</Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.props.handleLogout()}
+            >
+              <Text style={styles.text}>Logout</Text>
+            </TouchableOpacity>
+            <FlatList
+              data={this.state.posts}
+              keyExtractor={(post) => post.id.toString()}
+              renderItem={({ item }) => <Post dataItem={item}></Post>}
+            />
+          </View>
         )
     }
 

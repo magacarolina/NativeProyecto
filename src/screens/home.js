@@ -30,9 +30,9 @@ export default class Home extends Component {
         console.log(this.state.posts);
         return(
             <View style = {styles.container}>
-                <Text> Home </Text>
+                <Text style = {styles.text}> Home </Text>
                 <TouchableOpacity style = {styles.button} onPress={() => this.props.handleLogout()}>
-                    <Text style = {styles.text}> Logout </Text>
+                    <Text style = {styles.buttonText}> Logout </Text>
                 </TouchableOpacity>
                 <FlatList
                 data = {this.state.posts}
@@ -52,21 +52,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         
     },
-    field: {
-        width: '450px',
-        backgroundColor: "#B2E7E8",
-        color: '#FFA400',
-        padding: 10,
-        marginVertical: 10,
-        fontSize: '20px'
-        
-    },
     button: {
-        width: '10%',
+        margin: 10,
+        width: '30%',
         backgroundColor: "#8FB9AA",
         alignItems: 'center',
-        padding: 10,
+        padding: 5,
         
+    },
+    buttonText: {
+        color: '',
+        fontSize: '15px'
     },
     text: {
         color: '',
