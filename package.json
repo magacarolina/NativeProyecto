@@ -8,6 +8,10 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/native": "^6.0.6",
     "expo": "~42.0.1",

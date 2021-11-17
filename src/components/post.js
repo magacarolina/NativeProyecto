@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity, Modal, FlatList } from 'react-native'
 import { auth, db } from '../firebase/config';
 import firebase from 'firebase';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 
 export default class Post extends Component{
@@ -91,23 +94,22 @@ export default class Post extends Component{
           source={{ uri: this.props.item.data.photo }}
              />
                 <Text>{this.props.item.data.description}</Text>
-                <Text>{this.props.item.data.createdAt}</Text>
                 <Text>{this.props.item.data.owner}</Text>
-                <Text>Likes: {this.state.likes}</Text>
                 {
                     !this.state.liked ?
                     <TouchableOpacity onPress = {()=> this.onLike()}>
-                        <Text>
-                            Like
+                        <Text style={styles.iconText}>
+                            <FontAwesomeIcon icon= {faHeart}/>
                         </Text>
                     </TouchableOpacity>
                     :
                     <TouchableOpacity onPress = {()=> this.onDislike()}>
-                        <Text>
-                            Unlike
+                         <Text style={styles.iconText}>
+                        <FontAwesomeIcon icon= {faTimes}/>
                         </Text>
                     </TouchableOpacity>
                 }
+                 <Text>Likes: {this.state.likes}</Text>
                 <TouchableOpacity onPress={()=>{this.showModal()}}>
                     <Text>
                         Ver comentarios
@@ -125,7 +127,7 @@ export default class Post extends Component{
                             <View style={styles.modalView}>
                                 {/* Botón de cierre del modal */}
                                 <TouchableOpacity style={styles.closeModal} onPress={()=>{this.closeModal()}}>
-                                        <Text style={styles.modalText} >X</Text>
+                                        <Text style={styles.modalText} >Cerrar</Text>
                                 </TouchableOpacity>
                                 <Text>
                                     Aquí también irán los comentarios!  
@@ -146,7 +148,8 @@ export default class Post extends Component{
 
 const styles = StyleSheet.create({
     image: {
-        height: 200,
+        height: 220,
+        width: 370
     
     },
     container:{
@@ -167,6 +170,11 @@ const styles = StyleSheet.create({
     modalText:{
         fontWeight: 'bold',
         color:'#fff',
+    },
+    iconText:{
+        color:'#c91e2f',
+        fontWeight: 'bold',
+        fontSize: 35
     },
     modalView:{
         backgroundColor: 'purple',
