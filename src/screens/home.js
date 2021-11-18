@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, FlatList, TextInput} from 'react-native';
 import Post from '../components/Post';
-import { db } from '../firebase/config';
+import { auth, db } from '../firebase/config';
 
 export default class Home extends Component {
     constructor(props){
@@ -40,7 +40,7 @@ export default class Home extends Component {
                     placeholder="Buscar usuario..."
                     onChangeText={text => this.setState({searchInput: text})}
                 />
-                <Text style = {styles.text}> Home </Text>
+                <Text style = {styles.text}> ¡Hola {auth.currentUser.displayName}! </Text>
                 <TouchableOpacity style = {styles.button} onPress={() => this.props.handleLogout()}>
                     <Text style = {styles.buttonText}> Logout </Text>
                 </TouchableOpacity>
