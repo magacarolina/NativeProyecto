@@ -183,6 +183,9 @@ export default class Post extends Component{
                     <FlatList/>
                         <Text style={styles.iconComment}>
                         <FontAwesomeIcon icon= {faComments}/> {this.props.item.data.description}</Text>
+                        <Text style={styles.userText}> 
+                <FontAwesomeIcon icon= {faUser}/> {this.props.item.data.comments}</Text>
+                        
                         
                         
                   
