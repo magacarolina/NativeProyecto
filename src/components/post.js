@@ -67,7 +67,11 @@ export default class Post extends Component{
         const posteoActualizar = db.collection('posts').doc(this.props.item.id)
         
         posteoActualizar.update({
-            comments: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
+            comments: firebase.firestore.FieldValue.arrayUnion({
+                user: auth.currentUser.email,
+                comment: this.state.comment,
+                createdAt: new Date().toString() 
+            })
         })
         .then(()=> {
             this.setState({
@@ -174,19 +178,16 @@ export default class Post extends Component{
                                     Aquí también irán los comentarios!  
                                 </Text>
                                 <Text>
-                                {
-                    !this.state.commented ?
-                    <TouchableOpacity onPress = {()=> this.onComment()}>
+                                
+                    
+                    <FlatList/>
                         <Text style={styles.iconComment}>
                         <FontAwesomeIcon icon= {faComments}/> {this.props.item.data.description}</Text>
                         
                         
-                    </TouchableOpacity>
-                    :
-                    <TouchableOpacity onPress = {()=> this.onDislike()}>
-                        
-                    </TouchableOpacity>
-                }
+                  
+             
+                
                          <TextInput
                     style={styles.field}
                     keyboardType='default'
@@ -197,7 +198,7 @@ export default class Post extends Component{
                     value = {this.state.comment}
                 />
                
-                <TouchableOpacity style = {styles.button} onPress={() => this.handleComment()}>
+                <TouchableOpacity style = {styles.button} onPress={() => this.onComment()}>
                <Text style= {styles.uploadComment}> <FontAwesomeIcon icon= {faPlusCircle}/> Subir comentario</Text> 
                 </TouchableOpacity>   
                                 
