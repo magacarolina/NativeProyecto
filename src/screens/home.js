@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, FlatList, TextInput} from 'react-native';
 import Post from '../components/Post';
 import { db } from '../firebase/config';
 
@@ -7,7 +7,8 @@ export default class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
-            posts: []
+            posts: [],
+            searchInput: ""
         }
     }
     componentDidMount(){
@@ -27,15 +28,24 @@ export default class Home extends Component {
         )
     }
     render(){
+        let filteredPosts = this.state.searchInput.length > 0
+        ? this.state.posts.filter(element => element.data.owner.includes(this.state.searchInput)) 
+        : this.state.posts
         console.log(this.state.posts);
         return(
             <View style = {styles.container}>
+                <TextInput
+                    style={styles.field}
+                    keyboardType="default"
+                    placeholder="Buscar usuario..."
+                    onChangeText={text => this.setState({searchInput: text})}
+                />
                 <Text style = {styles.text}> Home </Text>
                 <TouchableOpacity style = {styles.button} onPress={() => this.props.handleLogout()}>
                     <Text style = {styles.buttonText}> Logout </Text>
                 </TouchableOpacity>
                 <FlatList
-                data = {this.state.posts}
+                  data = {filteredPosts}
                 keyExtractor = {post => post.id.toString()}
                 renderItem = { ({item}) => 
                     <Post item = {item}></Post> }
@@ -67,5 +77,12 @@ const styles = StyleSheet.create({
     text: {
         color: '',
         fontSize: '20px'
+    },
+    field: {
+        width: '80%',
+        backgroundColor: "#09009B",
+        color: '#FFA400',
+        padding: 10,
+        marginVertical: 10
     }
 })
