@@ -82,33 +82,7 @@ export default class Post extends Component{
 
     }
 
-    /* handleComment(){
-        db.collection('posts').add({
-            owner: auth.currentUser.displayName,
-            description: this.state.comment,
-            createdAt: Date.now(),
-            likes: [],
-            comments: [],
-            photo: this.state.photo
-        })
-        .then(response => {
-            console.log(response);
-            alert("Comentario cargado con éxito!");
-            this.setState({
-                comments: [],
-                comment: "",
-                commented: true
-                
-            })
-            console.log(this.props);
-            
-        })
-        .catch(error => {
-            console.log(error);
-            alert("Error 404");
-        })
-    }
- */
+
 
     //Muestra el modal
     showModal(){
@@ -184,7 +158,7 @@ export default class Post extends Component{
                         <Text style={styles.iconComment}>
                         <FontAwesomeIcon icon= {faComments}/> {this.props.item.data.description}</Text>
                         <Text style={styles.userText}> 
-                <FontAwesomeIcon icon= {faUser}/> {this.props.item.data.comments}</Text>
+                        <FontAwesomeIcon icon= {faComments}/> {this.props.item.data.comments.comment}</Text>
                         
                         
                         
