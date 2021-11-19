@@ -34,6 +34,7 @@ export default class Home extends Component {
         console.log(this.state.posts);
         return(
             <View style = {styles.container}>
+                <Text>Buscador de usuarios:</Text>
                 <TextInput
                     style={styles.field}
                     keyboardType="default"
@@ -60,12 +61,14 @@ const styles = StyleSheet.create({
         padding: '10px',
         flex: 1,
         alignItems: 'center',
+        color:"#fff8e9",
+        backgroundColor: "#FFF8E9"
         
     },
     button: {
         margin: 10,
         width: '30%',
-        backgroundColor: "#8FB9AA",
+        backgroundColor: "#ffcdbf",
         alignItems: 'center',
         padding: 5,
         
@@ -78,10 +81,11 @@ const styles = StyleSheet.create({
         color: '',
         fontSize: '20px'
     },
+
     field: {
         width: '80%',
-        backgroundColor: "#808080",
-        color: '#000000',
+        backgroundColor: "#D9F1F1",
+        color: '#fcfcfc',
         padding: 10,
         marginVertical: 10
     }
