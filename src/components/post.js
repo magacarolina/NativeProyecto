@@ -7,6 +7,7 @@ import { faHeart, faTimes, faTimesCircle ,faComments, faUser, faPlusCircle } fro
 
 
 
+
 export default class Post extends Component{
 
     constructor(props){
@@ -194,8 +195,7 @@ export default class Post extends Component{
 const styles = StyleSheet.create({
     image: {
         height: 220,
-        width: 370
-    
+        width: 370,
     },
     container:{
         flex: 1,
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
         fontSize: 30
     },
     modalView:{
-        backgroundColor: 'beige',
+        backgroundColor: 'grey',
         borderRadius: 15,
         width: 370
     },
