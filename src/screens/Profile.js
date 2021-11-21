@@ -59,11 +59,12 @@ export default class Profile extends Component{
 
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      width: "100%",
-      height: "100%",
-      alignItems: "center",
+  container: {
+    padding: '10px',
+    flex: 1,
+    alignItems: 'center',
+    color:"#fff8e9",
+    backgroundColor: "#FFF8E9"
     },
     postList: {
         padding: "10%",
@@ -71,13 +72,14 @@ const styles = StyleSheet.create({
     },
     button: {
       margin: 10,
-      width: "20%",
-      backgroundColor: "#ced4da",
-      alignItems: "center",
+      width: '30%',
+      backgroundColor: "#ffcdbf",
+      alignItems: 'center',
+      padding: 5,
     },
     text: {
       color: "#212529",
-      fontSize: 20,
+      fontSize: '20px',
       margin: 10,
     },
   }); 
