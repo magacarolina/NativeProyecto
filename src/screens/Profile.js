@@ -59,12 +59,21 @@ export default class Profile extends Component{
 
 
 const styles = StyleSheet.create({
+<<<<<<< HEAD
   container: {
     padding: '10px',
     flex: 1,
     alignItems: 'center',
     color:"#fff8e9",
     backgroundColor: "#FFF8E9"
+=======
+    container: {
+      flex: 1,
+      width: "100%",
+      height: "100%",
+      alignItems: "center",
+      backgroundColor: "#FFF8E9"
+>>>>>>> e5ea15101b531f634b5124fa739f8d0ed7a2a4ea
     },
     postList: {
         padding: "10%",
