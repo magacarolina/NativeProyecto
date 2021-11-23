@@ -153,8 +153,6 @@ export default class Post extends Component{
                                     Aquí también irán los comentarios!  
                                 </Text>
                                 <Text>
-                                
-                    
                     <FlatList/>
                         <Text style={styles.iconComment}>
                         <FontAwesomeIcon icon= {faComments}/> {this.props.item.data.description}</Text>
@@ -162,10 +160,6 @@ export default class Post extends Component{
                         <FontAwesomeIcon icon= {faComments}/> {this.props.item.data.comments.comment}</Text>
                         
                         
-                        
-                  
-             
-                
                          <TextInput
                     style={styles.field}
                     keyboardType='default'
