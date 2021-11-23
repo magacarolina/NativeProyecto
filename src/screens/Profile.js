@@ -46,11 +46,12 @@ export default class Profile extends Component{
             >
               <Text style={styles.text}>Logout</Text>
             </TouchableOpacity>
-            <FlatList
-              data={this.state.posts}
-              keyExtractor={(post) => post.id.toString()}
-              renderItem={({ item }) => <Post dataItem={item}></Post>}
-            />
+             <FlatList
+                data={this.state.posts}
+                keyExtractor={(post) => post.id.toString()}
+                style={styles.postList}
+                renderItem={({ item }) => <Post dataItem={item}></Post>}
+                />
           </View>
         )
     }
