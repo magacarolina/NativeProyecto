@@ -174,10 +174,6 @@ export default class Post extends Component{
                         <FontAwesomeIcon icon= {faComments}/> {this.props.item.data.comments.comment}</Text>
                         
                         
-                        
-                  
-             
-                
                          <TextInput
                     style={styles.field}
                     keyboardType='default'
