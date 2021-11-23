@@ -75,13 +75,17 @@ export default class Post extends Component{
             })
         })
         .then(()=> {
+            //Cambiar un estado para limpiar el form 
+            console.log('Comentario guardado');
             this.setState({
-                commented: true,
-                comments: this.state.comments + 1
+                comment: ''
             })
         })
 
     }
+
+    
+
 
 
 
@@ -152,10 +156,18 @@ export default class Post extends Component{
                                 <Text>
                                     Aquí también irán los comentarios!  
                                 </Text>
+                               
+                               
+                               
+                               
+                               
                                 <Text>
-                                
-                    
-                    <FlatList/>
+                                    
+
+                                <FlatList 
+                                data={this.props.item.data.comments}
+                                keyExtractor={post => post.createdAt.toString()}
+                                renderItem={({item})=> <Text> {item.user}: {item.comment}</Text>}/>
                         <Text style={styles.iconComment}>
                         <FontAwesomeIcon icon= {faComments}/> {this.props.item.data.description}</Text>
                         <Text style={styles.userText}> 
