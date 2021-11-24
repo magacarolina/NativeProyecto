@@ -14,7 +14,7 @@ export default class Post extends Component{
         super(props);
         this.state = {
             liked: false,
-            myLike: 0,
+            likes: 0,
             showModal: false,
             commented: false,
             comments: []
@@ -27,7 +27,7 @@ export default class Post extends Component{
                 this.setState({
                     likes: this.props.item.data.likes.length
                 })
-                if (this.props.item.data.likes.includes(auth.currentUser.email)){
+                if (this.props.item.data.likes.includes(auth.currentUser.email)){ //Que el sistema recuerde cuando vuelvas a iniciar sesion que ya le diste like y ue te aparezca la opcion para hacer unlike
                     this.setState({
                         liked: true
                     })
@@ -37,33 +37,35 @@ export default class Post extends Component{
     }
 
    
-    onLike(){
-        //Agregar mi usuario a un array de usuario que likearon.
-            //Updatear el registro (documento)
-        db.collection('posts').doc(this.props.item.id).update({
-            likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
-        })
-        .then(()=>{
+    onLike() {
+        const posteoActualizar = db.collection("posts").doc(this.props.item.id);
+    
+        posteoActualizar.update({
+            likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email),
+          })
+          .then(() => {
             this.setState({
-                //likes:this.props.item.data.likes.length,
-                likes:this.state.likes + 1, //Opción más rápida de respuesta
-                myLike: true,
-            })
-        })
-    }
+              liked: true,
+              likes: this.state.likes + 1,
+            });
+          });
+      }
     onDislike(){
         //Quitar mi usuario a un array de usuario que likearon.
             //Updatear el registro (documento)
-        db.collection('posts').doc(this.props.item.id).update({
-            likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
-        })
-        .then(()=>{
-            this.setState({
-                //likes:this.props.item.data.likes.length,
-                likes:this.state.likes - 1, //Opción más rápida de respuesta
-                myLike: false,
-            })
-        })
+            const posteoActualizar = db.collection("posts").doc(this.props.item.id);
+
+            posteoActualizar.update({
+                likes: firebase.firestore.FieldValue.arrayRemove(
+                  auth.currentUser.email
+                ),
+              })
+              .then(() => {
+                this.setState({
+                  liked: false,
+                  likes: this.state.likes - 1,
+                });
+              });
     }
     onComment(){
         const posteoActualizar = db.collection("posts").doc(this.props.item.id)
@@ -120,7 +122,7 @@ export default class Post extends Component{
              <Text>Likes: {this.state.likes}</Text>
                 
                   {
-                this.state.myLike == false ?
+                !this.state.liked ?
                 <TouchableOpacity onPress={()=>this.onLike()}>
                      <Text style={styles.iconText}>
                             <FontAwesomeIcon icon= {faHeart}/>
@@ -139,35 +141,41 @@ export default class Post extends Component{
                         Ver comentarios
                     </Text>
                 </TouchableOpacity>
+                
                 {
                     this.state.showModal ?
 
                     <Modal
-                    animationType= 'fade'
-                    transparent={false}
-                    visible = {this.state.showModal}
-                    style = {styles.modal}
-                >
-                            <View style={styles.modalView}>
+                            animationType= 'fade'
+                            transparent={false}
+                            visible = {this.state.showModal}
+                            style = {styles.modal}>
+
+                    <View style={styles.modalView}>
                                 {/* Botón de cierre del modal */}
                                 <TouchableOpacity style={styles.closeModal} onPress={()=>{this.closeModal()}}>
-                                        <Text style={styles.modalText} >X</Text>
+                                             <Text style={styles.modalText} >X</Text>
                                 </TouchableOpacity>
                                
             
-                                <Text>
-                      <FontAwesomeIcon icon={faComments}>
-                          </FontAwesomeIcon> <Text style={styles.usercomment}> Comentarios: {this.props.item.data.comments.comment}</Text>
-                                <FlatList 
+        <Text><FontAwesomeIcon icon={faComments}></FontAwesomeIcon> <Text style={styles.usercomment}> Comentarios: {this.props.item.data.comments.comment}</Text>
+                  
+                   { this.props.item.data.comments.length !==0 ? (
+                       <FlatList 
                                 data={this.props.item.data.comments}
                                 keyExtractor={post => post.createdAt.toString()}
-                                renderItem={({item})=> <Text> {item.user}: {item.comment}</Text>}/>
+                                renderItem={({item})=> <Text> {item.user}: {item.comment}
+                                </Text>}
+                    />)
+                    :
+                    ( 
+                    <Text style= {styles.comentarios}> ¡Sin comentarios, opine usted primero!</Text>)
+                    
+                   } 
                        
                         
 
-                        
-                        
-                         <TextInput
+             <TextInput
                     style={styles.field}
                     keyboardType='default'
                     placeholder="Si queres, podes agregarle un comentario a la foto publicada por el usuario!"
@@ -175,16 +183,16 @@ export default class Post extends Component{
                     numberOfLines = {5}
                     onChangeText={text => this.setState({ comment: text })}
                     value = {this.state.comment}
-                />
+             />
                
-                <TouchableOpacity style = {styles.button} onPress={() => this.onComment()}>
-               <Text style= {styles.uploadComment}> <FontAwesomeIcon icon= {faPlusCircle}/> Subir comentario</Text> 
-                </TouchableOpacity>   
+        <TouchableOpacity style = {styles.button} onPress={() => this.onComment()}>
+                     <Text style= {styles.uploadComment}> <FontAwesomeIcon icon= {faPlusCircle}/> Subir comentario</Text> 
+        </TouchableOpacity>   
                                 
-                                </Text>
-                            </View>
+                    </Text>
+                    </View>
 
-                        </Modal>
+                     </Modal>
                         :
                         null
                 }
@@ -207,8 +215,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
        
     },
+    comentarios:{
+        fontSize: '18px'
+    },
     usercomment:{
         fontSize: "18px",
+        fontFamily: 'Arial'
      
     },
     

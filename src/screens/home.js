@@ -48,12 +48,22 @@ export default class Home extends Component {
                 <TouchableOpacity style = {styles.button} onPress={() => this.props.handleLogout()}>
                     <Text style = {styles.buttonText}> Logout </Text>
                 </TouchableOpacity>
-                <FlatList
-                  data = {filteredPosts}
-                keyExtractor = {post => post.id.toString()}
-                renderItem = { ({item}) => 
-                    <Post item = {item}></Post> }
-                />
+
+                  {filteredPosts.length > 0 ?
+                   (
+                       <FlatList
+                        style={styles.postList}
+                        data = {filteredPosts}
+                        keyExtractor = {post => post.id.toString()}
+                        renderItem= {({item})=>
+                            <Post item = {item}></Post>}
+                    />
+                   ) 
+                   :(
+                       <Text>¡El usuario no existe o aún no tiene publicaciones!</Text> 
+                   )
+                    
+            } 
             </View>
         )
     }
@@ -71,8 +81,8 @@ const styles = StyleSheet.create({
     titulo: {
         
         fontFamily: "Calibri",
-        fontSize: 57,
-        padding: '5px',
+        fontSize: 70,
+        padding: '10px',
         backgroundColor: "#ACACAC",
         
         

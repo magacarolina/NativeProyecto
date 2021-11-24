@@ -53,7 +53,7 @@ export default class Profile extends Component{
              <FlatList
                 data={this.state.posts}
                 keyExtractor={(post) => post.id.toString()}
-                renderItem={({ item }) => <Post dataItem={item}></Post>}
+                renderItem={({ item }) => <Post item={item}></Post>}
                 />
           </View>
         )
