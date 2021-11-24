@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { color } from 'react-native-reanimated';
 import { auth } from '../firebase/config';
+import { faPhotoVideo } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class Login extends Component {
     constructor(props) {
@@ -17,7 +19,8 @@ export default class Login extends Component {
         console.log(this.state.loggedIn);
         return (
             <View style={styles.container}>
-                <Text style={styles.text}>Ingresar</Text>
+                <Text style={styles.titulo}><FontAwesomeIcon icon= {faPhotoVideo}/> USERNET</Text>
+                <Text style={styles.ingresar}>Ingresar</Text>
                 <TextInput
                     style={styles.field}
                     keyboardType="email-address"
@@ -43,16 +46,34 @@ const styles = StyleSheet.create({
     container: {
         padding: 10,
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: "#FFF8E9"
     },
     field: {
 
         width: 360,
-        backgroundColor: "#B2E7E8",
-        color: '#FFA400',
+        backgroundColor: "#D9F1F1",
+        color: '#000000',
         padding: 10,
         marginVertical: 10,
         fontSize: '20px'
+        
+    },
+    ingresar: {
+        
+        fontSize: 30,
+        padding: '10px',
+        backgroundColor: "#8FB9AA", 
+        margin: 30 ,
+        alignSelf: 'flex-start'
+    },
+    titulo: {
+        
+        fontFamily: "Calibri",
+        fontSize: 70,
+        padding: '10px',
+        backgroundColor: "#ACACAC",
+        
         
     },
     button: {
@@ -62,7 +83,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     text: {
-        color: '',
+        
         fontSize: 20
     }
 })

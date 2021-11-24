@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { auth } from '../firebase/config';
+import { faPhotoVideo } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class Register extends Component {
     constructor(props) {
@@ -24,24 +26,25 @@ export default class Register extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.text}>Registrate</Text>
+                  <Text style={styles.titulo}><FontAwesomeIcon icon= {faPhotoVideo}/> USERNET</Text>
+                <Text style={styles.registrarse}>Registrate</Text>
                 <TextInput
                     style={styles.field}
                     keyboardType="default"
-                    placeholder="username"
+                    placeholder="Username"
                     
                     onChangeText={text => this.setState({ username: text })}
                 />
                 <TextInput
                     style={styles.field}
                     keyboardType="email-address"
-                    placeholder="email"
+                    placeholder="Email"
                     onChangeText={text => this.setState({ email: text })}
                 />
                 <TextInput
                     style={styles.field}
                     keyboardType='default'
-                    placeholder="password"
+                    placeholder="Contraseña/Password"
                     secureTextEntry={true}
                     onChangeText={text => this.setState({ password: text })}
                 />
@@ -57,18 +60,35 @@ const styles = StyleSheet.create({
     container: {
         padding: 10,
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: "#FFF8E9"
     },
     formContainer:{
         backgroundColor: '#ccc',
         marginHorizontal: 10,
         padding:10,
       },
+      titulo: {
+        
+        fontFamily: "Calibri",
+        fontSize: 70,
+        padding: '10px',
+        backgroundColor: "#ACACAC",
+        
+        
+    },
+      registrarse: {
+        fontSize: 30,
+        padding: '10px',
+        backgroundColor: "#8FB9AA", 
+        margin: 30 ,
+        alignSelf: 'flex-start'
+      },
       field: {
 
         width: 360,
-        backgroundColor: "#B2E7E8",
-        color: '#FFA400',
+        backgroundColor: "#D9F1F1",
+        color: '#000000',
         padding: 10,
         marginVertical: 10,
         fontSize: '20px'
@@ -84,7 +104,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     text: {
-        color: '#FFA400',
+        color: '#000000',
         fontSize: 20
     },
     touchable:{

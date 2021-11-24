@@ -1,7 +1,10 @@
+import { faAmericanSignLanguageInterpreting, faMusic, faPhotoVideo } from '@fortawesome/free-solid-svg-icons';
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, FlatList, TextInput} from 'react-native';
 import Post from '../components/Post';
 import { auth, db } from '../firebase/config';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 export default class Home extends Component {
     constructor(props){
@@ -34,8 +37,8 @@ export default class Home extends Component {
         console.log(this.state.posts);
         return(
             <View style = {styles.container}>
-                <Text>Buscador de usuarios:</Text>
-                <TextInput
+                <Text style={styles.titulo}><FontAwesomeIcon icon= {faPhotoVideo}/> USERNET</Text>
+               <TextInput
                     style={styles.field}
                     keyboardType="default"
                     placeholder="Buscar usuario..."
@@ -65,16 +68,31 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFF8E9"
         
     },
+    titulo: {
+        
+        fontFamily: "Calibri",
+        fontSize: 70,
+        padding: '10px',
+        backgroundColor: "#ACACAC",
+        
+        
+    },
     button: {
         margin: 10,
         width: '30%',
         backgroundColor: "#ffcdbf",
         alignItems: 'center',
-        padding: 5,
+        padding: 10,
+        fontSize: 20
+    
+        
     },
     buttonText: {
         color: '',
-        fontSize: '15px'
+        fontSize: '15px',
+        alignItems: 'center',
+        fontSize: 20
+
     },
     text: {
         color: '',
@@ -84,7 +102,7 @@ const styles = StyleSheet.create({
     field: {
         width: '80%',
         backgroundColor: "#D9F1F1",
-        color: '#fcfcfc',
+        color: '#CRCRCR',
         padding: 10,
         marginVertical: 10
     }
