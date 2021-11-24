@@ -21,7 +21,7 @@ export default class Register extends Component {
         }
         else {
             this.setState({
-                 error: "Completar los campos faltantes!"
+                 error: "Completar los campos faltantes!" 
             })
            
         }
