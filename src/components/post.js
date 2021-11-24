@@ -14,7 +14,7 @@ export default class Post extends Component{
         super(props);
         this.state = {
             liked: false,
-            likes: 0,
+            myLike: 0,
             showModal: false,
             commented: false,
             comments: []
@@ -36,36 +36,37 @@ export default class Post extends Component{
         }
     }
 
+   
     onLike(){
-        const posteoActualizar = db.collection('posts').doc(this.props.item.id)
-        
-        posteoActualizar.update({
+        //Agregar mi usuario a un array de usuario que likearon.
+            //Updatear el registro (documento)
+        db.collection('posts').doc(this.props.item.id).update({
             likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
         })
-        .then(()=> {
+        .then(()=>{
             this.setState({
-                liked: true,
-                likes: this.state.likes + 1
+                likes:this.props.item.data.likes.length,
+                //likes:this.state.likes + 1, //Opción más rápida de respuesta
+                myLike: true,
             })
         })
     }
-
     onDislike(){
-        const posteoActualizar = db.collection('posts').doc(this.props.item.id)
-        
-        posteoActualizar.update({
+        //Quitar mi usuario a un array de usuario que likearon.
+            //Updatear el registro (documento)
+        db.collection('posts').doc(this.props.item.id).update({
             likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
         })
-        .then(()=> {
+        .then(()=>{
             this.setState({
-                liked: false,
-                likes: this.state.likes - 1
+                likes:this.props.item.data.likes.length,
+                //likes:this.state.likes + 1, //Opción más rápida de respuesta
+                myLike: false,
             })
         })
-        
     }
     onComment(){
-        const posteoActualizar = db.collection('posts').doc(this.props.item.id)
+        const posteoActualizar = db.collection("posts").doc(this.props.item.id)
         
         posteoActualizar.update({
             comments: firebase.firestore.FieldValue.arrayUnion({
@@ -116,22 +117,21 @@ export default class Post extends Component{
           style={styles.image}
           source={{ uri: this.props.item.data.photo }}
              />
-            
-                {
-                    !this.state.liked ?
-                    <TouchableOpacity onPress = {()=> this.onLike()}>
-                        <Text style={styles.iconText}>
+             <Text>Likes: {this.state.likes}</Text>
+                
+                  {
+                this.state.myLike == false ?
+                <TouchableOpacity onPress={()=>this.onLike()}>
+                     <Text style={styles.iconText}>
                             <FontAwesomeIcon icon= {faHeart}/>
                         </Text>
-                    </TouchableOpacity>
-                    :
-                    <TouchableOpacity onPress = {()=> this.onDislike()}>
-                         <Text style={styles.iconText}>
+                </TouchableOpacity> :
+                <TouchableOpacity onPress={()=>this.onDislike()}>
+                     <Text style={styles.iconText}>
                         <FontAwesomeIcon icon= {faTimes}/>
                         </Text>
-                    </TouchableOpacity>
-                }
-                 <Text>Likes: {this.state.likes}</Text>
+                </TouchableOpacity>                       
+            }
                  <Text>{this.props.item.data.description}</Text>
                 <TouchableOpacity onPress={()=>{this.showModal()}}>
               
@@ -156,11 +156,7 @@ export default class Post extends Component{
                                 <Text>
                                     Aquí también irán los comentarios!  
                                 </Text>
-                               
-                               
-                               
-                               
-                               
+            
                                 <Text>
                                     
 
