@@ -22,7 +22,7 @@ export default class Post extends Component{
     }
 
     componentDidMount(){
-        if (this.props.dataItem){
+        if (this.props.item){
             if (this.props.item.data.likes.length !== 0){
                 this.setState({
                     likes: this.props.item.data.likes.length
@@ -45,8 +45,8 @@ export default class Post extends Component{
         })
         .then(()=>{
             this.setState({
-                likes:this.props.item.data.likes.length,
-                //likes:this.state.likes + 1, //Opción más rápida de respuesta
+                //likes:this.props.item.data.likes.length,
+                likes:this.state.likes + 1, //Opción más rápida de respuesta
                 myLike: true,
             })
         })
@@ -59,8 +59,8 @@ export default class Post extends Component{
         })
         .then(()=>{
             this.setState({
-                likes:this.props.item.data.likes.length,
-                //likes:this.state.likes + 1, //Opción más rápida de respuesta
+                //likes:this.props.item.data.likes.length,
+                likes:this.state.likes - 1, //Opción más rápida de respuesta
                 myLike: false,
             })
         })

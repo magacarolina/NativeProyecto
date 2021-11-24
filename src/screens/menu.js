@@ -40,7 +40,7 @@ export default class Menu extends Component{
         })
         .catch( response => {
             console.log(response);
-            alert("Error en el logueo");
+            alert("Error en el logueo (Email y/o contraseña incorrectos!)");
             this.setState({
                 error: response
             })
@@ -62,7 +62,7 @@ export default class Menu extends Component{
         })
         .catch( error => {
             console.log(error);
-            alert("Error en el registro");
+            alert("Error en el registro (La contraseña debe tener 6 caracteres, el mail debe ser valida, y recorda completar todos los campos)");
             this.setState({
                 error: "Registro fallido!"
             })
