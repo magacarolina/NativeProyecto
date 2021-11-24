@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import {auth, db} from '../firebase/config';
 import Post from '../components/Post'
-import firebase from 'firebase';
+
+
 
 export default class Profile extends Component{
     constructor(props){
@@ -14,8 +15,8 @@ export default class Profile extends Component{
 
     componentDidMount(){
         db.collection("posts")
-        .where('email', '==', auth.currentUser.email)
-        .orderBy("cratedAt", "desc")
+        .where('user', '==', auth.currentUser.displayName)
+        .orderBy("createdAt", "desc")
         .onSnapshot((docs) => {
             let postsAux = []; 
             docs.forEach((doc) => {
@@ -29,17 +30,20 @@ export default class Profile extends Component{
         });
       });
     }
-
+   
     render(){
         return(
             <View style={styles.container}>
-
+              <Text>Mis datos personales:</Text>
+ 
             <Text>Usuario: {auth.currentUser.displayName}</Text>
-            <Text>mail: {auth.currentUser.email}</Text>
+            <Text>Email: {auth.currentUser.email}</Text>
             <Text>
-              {auth.currentUser.metadata.lastSignInTime}
+              Ultima vez que el usuario ingresó: {auth.currentUser.metadata.lastSignInTime}
             </Text>
             <Text>Publicaciones: {this.state.posts.length}</Text>
+         
+         
             <TouchableOpacity
               style={styles.button}
               onPress={() => this.props.handleLogout()}
