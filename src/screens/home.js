@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     titulo: {
         
         fontFamily: "Calibri",
-        fontSize: 70,
-        padding: '10px',
+        fontSize: 57,
+        padding: '5px',
         backgroundColor: "#ACACAC",
         
         
