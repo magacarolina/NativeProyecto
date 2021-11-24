@@ -153,21 +153,18 @@ export default class Post extends Component{
                                 <TouchableOpacity style={styles.closeModal} onPress={()=>{this.closeModal()}}>
                                         <Text style={styles.modalText} >Cerrar</Text>
                                 </TouchableOpacity>
-                                <Text>
-                                    Aquí también irán los comentarios!  
-                                </Text>
+                               
             
                                 <Text>
-                                    
-
+                      <FontAwesomeIcon icon={faComments}>
+                          </FontAwesomeIcon> <Text style={styles.usercomment}> Comentarios: {this.props.item.data.comments.comment}</Text>
                                 <FlatList 
                                 data={this.props.item.data.comments}
                                 keyExtractor={post => post.createdAt.toString()}
                                 renderItem={({item})=> <Text> {item.user}: {item.comment}</Text>}/>
-                        <Text style={styles.iconComment}>
-                        <FontAwesomeIcon icon= {faComments}/> {this.props.item.data.description}</Text>
-                        <Text style={styles.userText}> 
-                        <FontAwesomeIcon icon= {faComments}/> {this.props.item.data.comments.comment}</Text>
+                       
+                        
+
                         
                         
                          <TextInput
@@ -207,7 +204,12 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     uploadComment:{
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+       
+    },
+    usercomment:{
+        fontSize: "18px",
+     
     },
     
     closeModal:{
