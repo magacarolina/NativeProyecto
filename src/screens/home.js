@@ -35,6 +35,7 @@ export default class Home extends Component {
         const posteoActualizar = db.collection('posts').doc(id)
         posteoActualizar.delete()
     }
+    
     render(){
         let filteredPosts = this.state.searchInput.length > 0
         ? this.state.posts.filter(element => element.data.owner.includes(this.state.searchInput)) 
@@ -42,7 +43,7 @@ export default class Home extends Component {
         console.log(this.state.posts);
         return(
             <View style = {styles.container}>
-                <Text style={styles.titulo}><FontAwesomeIcon icon= {faPhotoVideo}/> USERNET</Text>
+                <Text style={styles.titulo}><FontAwesomeIcon icon= {faPhotoVideo}/> STUDYGRAM</Text>
                <TextInput
                     style={styles.field}
                     keyboardType="default"
