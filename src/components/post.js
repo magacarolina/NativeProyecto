@@ -108,10 +108,13 @@ export default class Post extends Component{
         })
     }
     
-    delete(id){
-        const posteoActualizar = db.collection('posts').doc(id)
-        posteoActualizar.delete()
-    }
+    deletePost() {
+        let confirmDelete = confirm("¿Estás seguro de que querés eliminar esta publicación?")
+        
+        if (confirmDelete){
+          db.collection("posts").doc(this.props.dataItem.id).delete();
+        }
+      }
     
     
     render(){
@@ -202,7 +205,7 @@ export default class Post extends Component{
                         :
                         null
                 }
-        <TouchableOpacity onPress = {()=> this.delete(item.id)}>
+        <TouchableOpacity onPress = {()=> this.deletePost(item.id)}>
         <Text>
             Borrar
         </Text>
