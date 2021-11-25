@@ -7,7 +7,6 @@ import { faHeart, faTimes, faTimesCircle ,faComments, faUser, faPlusCircle } fro
 
 
 
-
 export default class Post extends Component{
 
     constructor(props){
@@ -109,10 +108,10 @@ export default class Post extends Component{
     }
     
     deletePost() {
-        let confirmDelete = confirm("¿Estás seguro de que querés eliminar esta publicación?")
+        let confirmDelete = confirm("¿Eliminar esta publicación?")
         
         if (confirmDelete){
-          db.collection("posts").doc(this.props.dataItem.id).delete();
+          db.collection("posts").doc(this.props.item.id).delete();
         }
       }
     
@@ -205,13 +204,16 @@ export default class Post extends Component{
                         :
                         null
                 }
-        <TouchableOpacity onPress = {()=> this.deletePost(item.id)}>
-        <Text>
-            Borrar
-        </Text>
-    </TouchableOpacity>
+            <View>
+            {this.props.item.data.owner == auth.currentUser.displayName
+         ? (<TouchableOpacity onPress={() => this.deletePost()}>
+                  <Text>Borrar</Text>
+                </TouchableOpacity>)
+                : null }
+                
+                </View>
             </View>
-            
+           
         )
        
     }
