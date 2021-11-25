@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { color } from 'react-native-reanimated';
 import { auth } from '../firebase/config';
-import { faPhotoVideo } from '@fortawesome/free-solid-svg-icons';
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class Login extends Component {
@@ -20,7 +20,7 @@ export default class Login extends Component {
         console.log(this.state.loggedIn);
         return (
             <View style={styles.container}>
-                <Text style={styles.titulo}><FontAwesomeIcon icon= {faPhotoVideo}/> STUDYGRAM</Text>
+                <Text style={styles.titulo}><FontAwesomeIcon icon= {faGraduationCap}/> STUDYGRAM</Text>
                 <Text style={styles.ingresar}>Ingresar</Text>
                 <TextInput
                     style={styles.field}
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     titulo: {
         
         fontFamily: "Calibri",
-        fontSize: 57,
+        fontSize:40,
         padding: '5px',
         backgroundColor: "#ACACAC",
         

@@ -1,4 +1,4 @@
-import { faAmericanSignLanguageInterpreting, faMusic, faPhotoVideo } from '@fortawesome/free-solid-svg-icons';
+import { faAmericanSignLanguageInterpreting, faGraduationCap, faMusic, faPhotoVideo } from '@fortawesome/free-solid-svg-icons';
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, FlatList, TextInput} from 'react-native';
 import Post from '../components/Post';
@@ -43,7 +43,7 @@ export default class Home extends Component {
         console.log(this.state.posts);
         return(
             <View style = {styles.container}>
-                <Text style={styles.titulo}><FontAwesomeIcon icon= {faPhotoVideo}/> STUDYGRAM</Text>
+                <Text style={styles.titulo}><FontAwesomeIcon icon= {faGraduationCap}/> STUDYGRAM</Text>
                <TextInput
                     style={styles.field}
                     keyboardType="default"
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     titulo: {
         
         fontFamily: "Calibri",
-        fontSize: 70,
+        fontSize: 40,
         padding: '10px',
         backgroundColor: "#ACACAC",
         
