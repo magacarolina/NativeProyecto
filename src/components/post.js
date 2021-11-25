@@ -3,7 +3,7 @@ import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Modal, Flat
 import { auth, db } from '../firebase/config';
 import firebase from 'firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faTimes, faTimesCircle ,faComments, faUser, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faTimes, faTimesCircle ,faComments, faUser, faPlusCircle , faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -205,7 +205,7 @@ export default class Post extends Component{
             <View>
             {this.props.item.data.owner == auth.currentUser.displayName
          ? (<TouchableOpacity onPress={() => this.deletePost()}>
-                  <Text>Borrar</Text>
+                  <Text style= {styles.delete}> <FontAwesomeIcon icon= {faTrashAlt}/> </Text>
                 </TouchableOpacity>)
                 : null }
                 
@@ -238,6 +238,12 @@ const styles = StyleSheet.create({
         fontSize: "18px",
         fontFamily: 'Arial'
      
+    },
+    delete: {
+        color:'#ff0505',
+        fontWeight: 'bold',
+        fontSize: 25,
+        alignSelf: 'flex-end',
     },
     
     closeModal:{

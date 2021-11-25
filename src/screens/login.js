@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         padding: '10px',
         backgroundColor: "#8FB9AA", 
         margin: 30 ,
-        alignSelf: 'flex-start'
+        alignItems: 'center',
     },
     titulo: {
         
