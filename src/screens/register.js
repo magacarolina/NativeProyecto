@@ -30,7 +30,7 @@ export default class Register extends Component {
     render() {
         return (
             <View style={styles.container}>
-                  <Text style={styles.titulo}><FontAwesomeIcon icon= {faPhotoVideo}/> USERNET</Text>
+                  <Text style={styles.titulo}><FontAwesomeIcon icon= {faPhotoVideo}/> STUDYGRAM</Text>
                 <Text style={styles.registrarse}>Registrate</Text>
                 <TextInput
                     style={styles.field}

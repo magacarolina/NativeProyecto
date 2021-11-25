@@ -20,7 +20,7 @@ export default class Login extends Component {
         console.log(this.state.loggedIn);
         return (
             <View style={styles.container}>
-                <Text style={styles.titulo}><FontAwesomeIcon icon= {faPhotoVideo}/> USERNET</Text>
+                <Text style={styles.titulo}><FontAwesomeIcon icon= {faPhotoVideo}/> STUDYGRAM</Text>
                 <Text style={styles.ingresar}>Ingresar</Text>
                 <TextInput
                     style={styles.field}
