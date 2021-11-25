@@ -15,7 +15,6 @@ export default class Post extends Component{
             liked: false,
             likes: 0,
             showModal: false,
-            commented: false,
             comments: []
         }
     }
@@ -26,7 +25,7 @@ export default class Post extends Component{
                 this.setState({
                     likes: this.props.item.data.likes.length
                 })
-                if (this.props.item.data.likes.includes(auth.currentUser.email)){ //Que el sistema recuerde cuando vuelvas a iniciar sesion que ya le diste like y ue te aparezca la opcion para hacer unlike
+                if (this.props.item.data.likes.includes(auth.currentUser.email)){ 
                     this.setState({
                         liked: true
                     })
@@ -50,8 +49,7 @@ export default class Post extends Component{
           });
       }
     onDislike(){
-        //Quitar mi usuario a un array de usuario que likearon.
-            //Updatear el registro (documento)
+       
             const posteoActualizar = db.collection("posts").doc(this.props.item.id);
 
             posteoActualizar.update({
@@ -77,7 +75,7 @@ export default class Post extends Component{
             })
         })
         .then(()=> {
-            //Cambiar un estado para limpiar el form 
+           
             console.log('Comentario guardado');
             this.setState({
                 comment: ''
@@ -91,7 +89,7 @@ export default class Post extends Component{
 
 
 
-    //Muestra el modal
+    
     showModal(){
         console.log('Mostrando modal')
         this.setState({
@@ -99,7 +97,7 @@ export default class Post extends Component{
         })
     }
     
-    //Cierra el modal
+   
     closeModal(){
         console.log('Cerrando modal')
         this.setState({
@@ -129,7 +127,7 @@ export default class Post extends Component{
              />
              <Text>Likes: {this.state.likes}</Text>
                 
-                  {
+            {
                 !this.state.liked ?
                 <TouchableOpacity onPress={()=>this.onLike()}>
                      <Text style={styles.iconText}>
@@ -150,7 +148,7 @@ export default class Post extends Component{
                     </Text>
                 </TouchableOpacity>
                 
-                {
+        {
                     this.state.showModal ?
 
                     <Modal
@@ -203,7 +201,7 @@ export default class Post extends Component{
                      </Modal>
                         :
                         null
-                }
+        }
             <View>
             {this.props.item.data.owner == auth.currentUser.displayName
          ? (<TouchableOpacity onPress={() => this.deletePost()}>
