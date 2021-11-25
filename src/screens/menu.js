@@ -28,27 +28,10 @@ export default class Menu extends Component{
         })
     }
     
-    
-    handleLogin(email, password){
-        auth.signInWithEmailAndPassword(email, password)
-        .then( response => {
-            console.log(response);
-            alert("Usuario logueado con exito!");
-            this.setState({
-                loggedIn: true
-            })
-        })
-        .catch( response => {
-            console.log(response);
-            alert("Error en el logueo (Email y/o contraseña incorrectos!)");
-            this.setState({
-                error: response
-            })
-        })
-    }
+
     
     handleRegister(email, password, username) {
-        //alert(`REGISTRO: usuario: ${this.state.email}, password: ${this.state.password}`)
+    
         auth.createUserWithEmailAndPassword(email, password)
         .then( response => {
             console.log(response);
@@ -69,6 +52,26 @@ export default class Menu extends Component{
         })
     }
 
+
+    handleLogin(email, password){
+        auth.signInWithEmailAndPassword(email, password)
+        .then( response => {
+            console.log(response);
+            alert("Usuario logueado con exito!");
+            this.setState({
+                loggedIn: true
+            })
+        })
+        .catch( response => {
+            console.log(response);
+            alert("Error en el logueo (Email y/o contraseña incorrectos!)");
+            this.setState({
+                error: response
+            })
+        })
+    }
+
+
     handleLogout(){
         auth.signOut()
         .then(()=> {
@@ -80,6 +83,8 @@ export default class Menu extends Component{
             console.log(error);
         })
     }
+
+
 
     render(){
         const Drawer = createDrawerNavigator();

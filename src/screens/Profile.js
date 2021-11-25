@@ -15,7 +15,7 @@ export default class Profile extends Component{
 
     componentDidMount(){
         db.collection("posts")
-        .where('email', '==', auth.currentUser.email)
+        .where("owner", '==', auth.currentUser.displayName)
         .orderBy("createdAt", "desc")
         .onSnapshot((docs) => {
             let postsAux = []; 

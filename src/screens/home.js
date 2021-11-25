@@ -30,6 +30,11 @@ export default class Home extends Component {
             }
         )
     }
+
+    delete(id){
+        const posteoActualizar = db.collection('posts').doc(id)
+        posteoActualizar.delete()
+    }
     render(){
         let filteredPosts = this.state.searchInput.length > 0
         ? this.state.posts.filter(element => element.data.owner.includes(this.state.searchInput)) 
@@ -64,6 +69,7 @@ export default class Home extends Component {
                    )
                     
             } 
+             
             </View>
         )
     }

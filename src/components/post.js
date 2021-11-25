@@ -108,6 +108,12 @@ export default class Post extends Component{
         })
     }
     
+    delete(id){
+        const posteoActualizar = db.collection('posts').doc(id)
+        posteoActualizar.delete()
+    }
+    
+    
     render(){
 
      
@@ -196,8 +202,15 @@ export default class Post extends Component{
                         :
                         null
                 }
+        <TouchableOpacity onPress = {()=> this.delete(item.id)}>
+        <Text>
+            Borrar
+        </Text>
+    </TouchableOpacity>
             </View>
+            
         )
+       
     }
 }
 

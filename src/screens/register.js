@@ -15,7 +15,7 @@ export default class Register extends Component {
         }
     }
 
-    handleRegister(){
+    onRegister(){
         if (this.state.email !== "" && this.state.password !== "" && this.state.username !== ""){
             this.props.handleRegister(this.state.email, this.state.password, this.state.username)
         }
@@ -52,7 +52,7 @@ export default class Register extends Component {
                     secureTextEntry={true}
                     onChangeText={text => this.setState({ password: text })}
                 />
-                <TouchableOpacity style = {this.state.password !== '' ? styles.button : styles.notallowbutton}  onPress={() => this.handleRegister()}>
+                <TouchableOpacity style = {this.state.password !== '' ? styles.button : styles.notallowbutton}  onPress={() => this.onRegister()}>
                     <Text style = {styles.text}> Sign Up </Text>
                 </TouchableOpacity>
             </View>
