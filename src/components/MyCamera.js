@@ -6,7 +6,7 @@ import { storage } from '../firebase/config';
 export default class MyCamera extends React.Component{
     constructor(props){
         super(props);
-        this.camera; //Variable vacía
+        this.camera; 
         this.state = {
             photo: '',
             permission: false,
