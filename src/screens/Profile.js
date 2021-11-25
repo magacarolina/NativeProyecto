@@ -42,7 +42,7 @@ export default class Profile extends Component{
               Ultima vez que el usuario ingresó: {auth.currentUser.metadata.lastSignInTime}
             </Text>
             <Text>Publicaciones: {this.state.posts.length}</Text>
-         
+          
          
             <TouchableOpacity
               style={styles.button}
@@ -50,6 +50,9 @@ export default class Profile extends Component{
             >
               <Text style={styles.text}>Logout</Text>
             </TouchableOpacity>
+
+            <Text> Mis publicaciones: </Text>
+            
              <FlatList
                 data={this.state.posts}
                 keyExtractor={(post) => post.id.toString()}
